@@ -71,6 +71,12 @@ persona1.mostrarNombre()
 print(persona2.id)
 
 print(f"El registro es {persona2.id} y el nombre es {persona2.nombre}")
+print("El registro es " + str(persona2.id) + " y el nombre es " + persona2.nombre)
+
+def unaFuncionFeliz():
+    return ":)"
+
+print(f"Mostrame una funcion feliz {unaFuncionFeliz()}")
 
 lista_personas = [persona1, persona2]
 for persona in lista_personas:
