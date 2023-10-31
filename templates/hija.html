@@ -3,3 +3,7 @@
 {% block dinamico %}
 <h1>Hola, esto es una impresion de la template hija</h1>
 {% endblock %}
+
+{% block mi_javascript %}
+<script src="{{ url_for('static', filename='js_operacional/app.js') }}"></script>
+{% endblock %}
