@@ -46,5 +46,14 @@ def get_ciudad():
     ]
     return render_template('vistas_ciudades/ver-ciudades.html', ciudades=ciudades)
 
+@app.route('/hija')
+def get_hija():
+    return render_template('hija.html')
+
+@app.route('/tabla')
+def get_tabla():
+    return render_template('tabla.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
