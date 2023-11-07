@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block dinamico %}
+{% block contenido_principal %}
 <div class="container">
     <table class="table">
         <thead>
@@ -32,4 +32,8 @@
         </tbody>
       </table>
 </div>
+{% endblock %}
+
+{% block mi_javascript %}
+<script src="{{ url_for('static', filename='js_operacional/tabla.js') }}"></script>
 {% endblock %}
