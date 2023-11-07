@@ -3,6 +3,11 @@ from markupsafe import escape
 
 app = Flask(__name__)
 
+# Agregando endpoints para login
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 # endpoint
 @app.route('/hola')
 def hola():
