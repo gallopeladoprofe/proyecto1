@@ -1,1 +1,3 @@
-console.log('Holis');
+$(function() {
+    console.log('Holis usando jquery');
+});
