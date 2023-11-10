@@ -1,12 +1,32 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session, redirect, url_for
 from markupsafe import escape
 
 app = Flask(__name__)
 
+# Set palabra clave
+app.secret_key = b'mipalabrasecreta'
+
 # Agregando endpoints para login
-@app.route('/login')
+@app.route('/')
+def index():
+    if 'usuario' in session:
+        return f'Sesión logueada correctamente, eres {session["usuario"]}'
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        print(request.form)
+        usuario = request.form['usuario']
+        clave = request.form['clave']
+        if usuario == 'juan' and clave == '1':
+            session['usuario'] = usuario
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('login'))
 
 # endpoint
 @app.route('/hola')
