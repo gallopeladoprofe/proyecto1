@@ -1,7 +1,25 @@
-from flask import Flask, render_template
-from markupsafe import escape
+from flask import Flask, render_template, jsonify
+from referencial.ciudad.ciudadDao import CiudadDao
 
 app = Flask(__name__)
+
+
+@app.route('/get-ciudad')
+def getCiudad():
+    cdao = CiudadDao()
+    lista = cdao.getCiudades()
+    diccionario = []
+    if len(lista) > 0:
+        for item in lista:
+            diccionario.append(
+                {
+                    'id': item[0],
+                    'descripcion': item[1]
+                }
+            )
+        return jsonify(diccionario)
+    else:
+        return 'no hay ciudades'
 
 # endpoint
 @app.route('/hola')
