@@ -4,6 +4,23 @@ from referencial.ciudad.ciudadDao import CiudadDao
 app = Flask(__name__)
 
 
+# Render de vistas
+@app.route('/index-ciudad')
+def index_ciudad():
+    cdao = CiudadDao()
+    lista = cdao.getCiudades()
+    diccionario = []
+    if len(lista) > 0:
+        for item in lista:
+            diccionario.append(
+                {
+                    'id': item[0],
+                    'descripcion': item[1]
+                }
+            )
+    return render_template('vistas_ciudades/index-ciudades.html', ciudades=diccionario)
+
+# REST
 @app.route('/get-ciudad')
 def getCiudad():
     cdao = CiudadDao()
@@ -46,23 +63,6 @@ def ver_html():
     # Client side rendering
     usuario = 'ADMINISTRADO POR SU SUEGRA'
     return render_template('index.html', usuario=usuario)
-
-@app.route('/ciudad')
-def get_ciudad():
-    ciudades = [{
-        'id': '01', 'descripcion': 'Asunción'
-        },
-        {
-            'id': '02', 'descripcion': 'Limpio'
-        },
-        {
-            'id': '03', 'descripcion': 'Fernando de la Mora'
-        },
-        {
-            'id': '04', 'descripcion': 'Villa Elisa'
-        }
-    ]
-    return render_template('vistas_ciudades/ver-ciudades.html', ciudades=ciudades)
 
 @app.route('/hija')
 def get_hija():

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block dinamico %}
+{% if ciudades|length > 0 %}
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for ciudad in ciudades %}
+            <tr>
+              <th scope="row">{{ ciudad['id'] }}</th>
+              <td>{{ ciudad['descripcion']}}</td>
+              <td></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        No hay elementos para mostrar
+      </div>
+    {% endif %}
+
+{% endblock %}
