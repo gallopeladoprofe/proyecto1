@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 from referencial.ciudad.ciudadDao import CiudadDao
 
 app = Flask(__name__)
@@ -19,6 +19,15 @@ def index_ciudad():
                 }
             )
     return render_template('vistas_ciudades/index-ciudades.html', ciudades=diccionario)
+
+@app.route('/agregar-ciudad')
+def agregar_ciudad():
+    return render_template('vistas_ciudades/agregar-ciudad.html')
+
+@app.route('/save-ciudad', methods=['POST'])
+def save_ciudad():
+    print(request.form)
+    return redirect(url_for('index_ciudad'))
 
 # REST
 @app.route('/get-ciudad')
