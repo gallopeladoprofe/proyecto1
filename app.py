@@ -44,6 +44,22 @@ def editar_ciudad(id):
         return render_template('vistas_ciudades/editar-ciudad.html', ciudad=ciudadFound)
     return redirect(url_for('index_ciudad'))
 
+@app.route('/update-ciudad', methods=['POST'])
+def update_ciudad():
+    cdao = CiudadDao()
+    idtxtciudad = request.form['idtxtciudad']
+    txtciudad = request.form['txtciudad']
+    isUpdated = False
+    if idtxtciudad == None or len(idtxtciudad.strip()) == 0:
+        return redirect(url_for('index_ciudad'))
+    
+    if txtciudad != None and len(txtciudad.strip()) > 0:
+        isUpdated = cdao.updateCiudad(idtxtciudad.strip(), txtciudad.strip().upper())
+    if isUpdated:
+        return redirect(url_for('index_ciudad'))
+    else:
+        return redirect(url_for('editar_ciudad', id=idtxtciudad))
+
 # REST
 @app.route('/get-ciudad')
 def getCiudad():
