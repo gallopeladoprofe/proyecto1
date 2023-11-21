@@ -60,6 +60,12 @@ def update_ciudad():
     else:
         return redirect(url_for('editar_ciudad', id=idtxtciudad))
 
+@app.route('/delete-ciudad/<id>')
+def delete_ciudad(id):
+    cdao = CiudadDao()
+    cdao.deleteCiudad(id)
+    return redirect(url_for('index_ciudad'))
+
 # REST
 @app.route('/get-ciudad')
 def getCiudad():
