@@ -27,7 +27,6 @@ def agregar_ciudad():
 @app.route('/save-ciudad', methods=['POST'])
 def save_ciudad():
     cdao = CiudadDao()
-    print(request.form)
     txtciudad = request.form['txtciudad']
     isSaved = False
     if txtciudad != None and len(txtciudad.strip()) > 0:
@@ -36,6 +35,14 @@ def save_ciudad():
         return redirect(url_for('index_ciudad'))
     else:
         return redirect(url_for('agregar_ciudad'))
+
+@app.route('/editar-ciudad/<id>')
+def editar_ciudad(id):
+    cdao = CiudadDao()
+    ciudadFound = cdao.getCiudadById(id)
+    if ciudadFound:
+        return render_template('vistas_ciudades/editar-ciudad.html', ciudad=ciudadFound)
+    return redirect(url_for('index_ciudad'))
 
 # REST
 @app.route('/get-ciudad')

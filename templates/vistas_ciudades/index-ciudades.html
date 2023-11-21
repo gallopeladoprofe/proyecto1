@@ -20,7 +20,9 @@
             <tr>
               <th scope="row">{{ ciudad['id'] }}</th>
               <td>{{ ciudad['descripcion']}}</td>
-              <td></td>
+              <td>
+                <a href="{{ url_for('editar_ciudad', id=ciudad['id']) }}" class="btn btn-primary">Editar</a>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
