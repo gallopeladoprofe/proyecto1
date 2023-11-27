@@ -3,6 +3,10 @@ from referencial.ciudad.ciudadDao import CiudadDao
 
 app = Flask(__name__)
 
+@app.route('/')
+def inicio():
+    return render_template('index.html')
+    
 
 # Render de vistas
 @app.route('/index-ciudad')
