@@ -9,6 +9,13 @@ def inicio():
     
 
 # Render de vistas
+
+# personas
+@app.route('/index-persona')
+def index_persona():
+    return render_template('gestionar_referenciales/vistas_personas/index-persona.html')
+
+# ciudades
 @app.route('/index-ciudad')
 def index_ciudad():
     cdao = CiudadDao()

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block dinamico %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Persona</h1>
+</div>
+
+<div class="row">
+    <div class="card shadow mb-4 col-12">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Datos Personales</h6>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="txtnombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="txtnombres" placeholder="ingrese sus nombres">
+            </div>
+            <div class="mb-3">
+                <label for="txtapellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="txtapellidos" placeholder="ingrese sus nombres">
+            </div>
+            <div class="mb-3">
+                <label for="txtci" class="form-label">Documento de Identidad</label>
+                <input type="text" class="form-control" id="txtci" placeholder="ingrese sus nombres">
+            </div>
+            <div class="mb-3">
+                <label for="txtdireccion" class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="txtdireccion" placeholder="ingrese sus nombres">
+            </div>
+            <button type="button" class="btn btn-primary" id="btncrear">Crear</button>
+            <button type="button" class="btn btn-secondary" id="btnlimpiar">Limpiar formulario</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block mi_javascript %}
+<script src="{{ url_for('static', filename='js_operacional/referenciales/personas/persona.js') }}"></script>
+{% endblock %}
