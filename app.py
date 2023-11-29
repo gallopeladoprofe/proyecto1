@@ -15,6 +15,15 @@ def inicio():
 def index_persona():
     return render_template('gestionar_referenciales/vistas_personas/index-persona.html')
 
+# Operaciones REST[GET, POST, PUT, PATCH, DELETE]
+@app.route('/save-persona', methods=['POST'])
+def save_persona():
+    print(request.json['nombres'])
+    return jsonify({
+        'mensaje': 'se recibió correctamente el json del navegador',
+        'objeto_recibido': request.json
+    })
+
 # ciudades
 @app.route('/index-ciudad')
 def index_ciudad():

@@ -3,7 +3,7 @@ $(function() {
     console.log('Holis, estoy en el formulario persona');
     
     
-    $('#btncrear').on('click', function(){
+    $('#btncrear').on('click', async function(){
         // recuperar los datos del formulario
         const nombres = $('#txtnombres').val();
         const apellidos = $('#txtapellidos').val();
@@ -57,10 +57,19 @@ $(function() {
         }
         console.log(persona);
 
+        try {
+            const guardado = await axios.post('/save-persona', persona);
+            console.log(guardado);
+        } catch (error) {
+            console.error(error);
+        }
+
+        /*
         Swal.fire({
             title: "Exitoso",
             text: "Guardando Formulario",
             icon: "success"
         });
+        */
     });
 });
