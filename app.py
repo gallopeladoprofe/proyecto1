@@ -17,6 +17,12 @@ def index_persona():
     return render_template('gestionar_referenciales/vistas_personas/index-persona.html')
 
 # Operaciones REST[GET, POST, PUT, PATCH, DELETE]
+@app.route('/get-personas')
+def get_personas():
+    pers =  PersonaDao()
+    lista = pers.getPersonas()
+    return jsonify(lista)
+    
 @app.route('/save-persona', methods=['POST'])
 def save_persona():
     
