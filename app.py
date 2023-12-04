@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from referencial.ciudad.ciudadDao import CiudadDao
+from referencial.persona.personaDao import PersonaDao
 
 app = Flask(__name__)
 
@@ -18,11 +19,33 @@ def index_persona():
 # Operaciones REST[GET, POST, PUT, PATCH, DELETE]
 @app.route('/save-persona', methods=['POST'])
 def save_persona():
-    print(request.json['nombres'])
-    return jsonify({
-        'mensaje': 'se recibió correctamente el json del navegador',
-        'objeto_recibido': request.json
-    })
+    
+    nombres = request.json['nombres']
+    apellidos = request.json['apellidos']
+    cedula = request.json['cedula']
+    direccion = request.json['direccion']
+    
+    guardado = False
+    
+    if len(nombres.strip()) > 0 and len(apellidos.strip()) > 0 and len(apellidos.strip()) > 0:
+        pers =  PersonaDao()
+        guardado = pers.insertPersona(nombres.strip().upper(), apellidos.strip().upper(), cedula.strip(), direccion.strip())
+        if guardado:
+            return jsonify({
+                'success': 'Se guardo el registro',
+                'error': None
+            })
+        else:
+            return jsonify({
+                'success': None,
+                'error': 'No se pudo guardar el registro'
+            })
+    else:
+        return jsonify({
+                'success': None,
+                'error': 'No se envio correctamente el post'
+            })
+        
 
 # ciudades
 @app.route('/index-ciudad')
