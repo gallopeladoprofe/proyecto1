@@ -23,6 +23,11 @@
 
     <link href="{{ url_for('static', filename='vendor/sweetalert/minimal.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/datatables1.13.8/dataTables.bootstrap5.min.css') }}">
+
+    {% block mi_css %}
+    {% endblock %}
+
 </head>
 
 <body id="page-top">
@@ -471,6 +476,9 @@
 
     <script src="{{ url_for('static', filename='vendor/sweetalert/sweetalert2.min.js') }}"></script>
 
+    <script src="{{ url_for('static', filename='vendor/datatables1.13.8/jquery.dataTables.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='vendor/datatables1.13.8/dataTables.bootstrap5.min.js') }}"></script>
 
     {% block mi_javascript %}
     {% endblock %}

@@ -7,7 +7,7 @@
     <a href="{{ url_for('agregar_ciudad') }}" class="btn btn-primary">Agregar ciudad</a>
   </div>
   <div class="card-body">
-    <table class="table">
+    <table class="table" id="tbl">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -36,4 +36,10 @@
       </div>
     {% endif %}
 
+{% endblock %}
+
+{% block mi_javascript %}
+<script>
+  $('#tbl').DataTable();
+</script>
 {% endblock %}
